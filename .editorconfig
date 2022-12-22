@@ -1,0 +1,33 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = false
+
+# Matches multiple files with brace expansion notation
+[*.{cls,trigger,js,css,comp}]
+charset = utf-8
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+# Matches all .yml files
+[*.yml]
+indent_style = space
+indent_size = 2
+
+# Indentation override for all JS under lib directory
+# [lib/**.js]
+# indent_style = space
+# indent_size = 2
