@@ -9,7 +9,7 @@ If you understood the name, you can star it 🤩
 ## Install from source
 Install the [SDFX CLI](https://developer.salesforce.com/tools/sfdxcli)
 
-Clone the repository: `git clone https://github.com/nabondance/afthonia.git`
+Clone the repository: `git clone https://github.com/nabondance/sfdx-afthonia.git`
 
 Install npm modules: `npm install`
 
