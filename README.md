@@ -1,5 +1,5 @@
-# αφθονία
-[Quick definition](https://en.wiktionary.org/wiki/%CE%B1%CF%86%CE%B8%CE%BF%CE%BD%CE%AF%CE%B1)
+# sfdx-afthonía
+[αφθονία](https://en.wiktionary.org/wiki/%CE%B1%CF%86%CE%B8%CE%BF%CE%BD%CE%AF%CE%B1)
 
 If you understood the name, you can star it 🤩
 
@@ -19,3 +19,6 @@ Link the plugin: `sfdx plugins:link .`
 - blabla
 
 # How to use it
+- reorder SOQL query (flag for id first)
+- delete data in specific order
+- surcouche adddata
