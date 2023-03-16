@@ -5,8 +5,11 @@
   "bugs": "https://github.com/nabondance/sfdx-afthonia/issues",
   "dependencies": {
     "@oclif/core": "^1",
-    "@salesforce/command": "^5",
-    "@salesforce/core": "^3",
+    "@salesforce/command": "^5.3.3",
+    "@salesforce/core": "^3.34.0",
+    "@salesforce/plugin-generator": "^2.0.17",
+    "@salesforce/sf-plugins-core": "^2.2.4",
+    "jsforce": "^2.0.0-beta.20",
     "tslib": "^2"
   },
   "devDependencies": {
@@ -51,8 +54,13 @@
     "commands": "./lib/commands",
     "bin": "sfdx",
     "topics": {
-      "hello": {
-        "description": "Commands to say hello."
+      "afthonia": {
+        "description": "afthonia commands",
+        "subtopics": {
+          "testSuite": {
+            "description": "Manage Salesforce test suites."
+          }
+        }
       }
     }
   },

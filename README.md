@@ -22,3 +22,4 @@ Link the plugin: `sfdx plugins:link .`
 - reorder SOQL query (flag for id first)
 - delete data in specific order
 - surcouche adddata
+- create testsuite for package

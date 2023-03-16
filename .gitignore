@@ -1,3 +1,4 @@
+.notes
 *-debug.log
 *-error.log
 /.nyc_output
@@ -5,5 +6,5 @@
 /lib
 /package-lock.json
 /tmp
+/tsconfig.tsbuildinfo
 node_modules
-.notes
