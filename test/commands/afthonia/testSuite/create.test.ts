@@ -1,18 +1,61 @@
+import { expect, test } from '@salesforce/command/lib/test';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as sinon from 'sinon';
+import AfthoniaTestSuiteCreate from '../../../../src/commands/afthonia/testSuite/create';
 
-import { expect, test } from '@oclif/test';
+describe('afthonia:testSuite:create', () => {
+  const folderPath = 'test/fixtures/testClasses';
+  const testSuiteFolderPath = path.join(folderPath, 'testSuites');
+  const testSuiteName = `${path.basename(folderPath)}_TestSuite.testSuite-meta.xml`;
+  const testSuitePath = path.join(testSuiteFolderPath, testSuiteName);
 
-describe('afthonia testSuite create', () => {
+  let existsSyncStub: sinon.SinonStub<any[], any>;
+  let mkdirSyncStub: sinon.SinonStub<any[], any>;
+  let writeFileStub: sinon.SinonStub<any[], any>;
+
+  beforeEach(() => {
+    existsSyncStub = sinon.stub(fs, 'existsSync').returns(false);
+    mkdirSyncStub = sinon.stub(fs, 'mkdirSync');
+    writeFileStub = sinon.stub(fs.promises, 'writeFile');
+  });
+
+  afterEach(() => {
+    sinon.restore();
+  });
+
   test
-    .stdout()
-    .command(['afthonia testSuite create'])
-    .it('runs hello', (ctx) => {
-      expect(ctx.stdout).to.contain('hello world');
+    .do(() => {
+      existsSyncStub.withArgs(testSuiteFolderPath).returns(true);
+    })
+    .do(() => {
+      return AfthoniaTestSuiteCreate.run(['--folderPath', folderPath]);
+    })
+    .it('creates test suite file in existing folder', () => {
+      sinon.assert.calledWithExactly(mkdirSyncStub, testSuiteFolderPath);
+      sinon.assert.calledWithExactly(writeFileStub, testSuitePath, sinon.match.string);
     });
 
   test
-    .stdout()
-    .command(['afthonia testSuite create', '--name', 'Astro'])
-    .it('runs hello --name Astro', (ctx) => {
-      expect(ctx.stdout).to.contain('hello Astro');
+    .do(() => {
+      return AfthoniaTestSuiteCreate.run(['--folderPath', folderPath]);
+    })
+    .it('creates test suite file in new folder', () => {
+      sinon.assert.calledWithExactly(mkdirSyncStub, testSuiteFolderPath);
+      sinon.assert.calledWithExactly(writeFileStub, testSuitePath, sinon.match.string);
+    });
+
+  test
+    .do(() => {
+      existsSyncStub.withArgs(testSuiteFolderPath).returns(true);
+      writeFileStub.rejects(new Error('Permission denied'));
+    })
+    .command(['afthonia:testSuite:create', '--folderPath', folderPath])
+    .catch((error) => {
+      expect(error.message).to.equal('Permission denied');
+    })
+    .it('handles file write errors', () => {
+      sinon.assert.calledWithExactly(mkdirSyncStub, testSuiteFolderPath);
+      sinon.assert.calledWithExactly(writeFileStub, testSuitePath, sinon.match.string);
     });
 });
