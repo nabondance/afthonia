@@ -76,7 +76,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "**/*.{cls,js,md,trigger,yaml,yml}": [
+    "**/*.{cls,ts,js,md,trigger,yaml,yml}": [
       "prettier --write"
     ]
   }
