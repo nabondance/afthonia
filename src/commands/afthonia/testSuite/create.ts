@@ -85,7 +85,7 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<void> {
     const testSuiteCloseTag = '</ApexTestSuite>';
 
     // Add every class names
-    const classTags = classNames.map(className => `<testClassName>${className}</testClassName>`);
+    const classTags = classNames.map(className => `    <testClassName>${className}</testClassName>`);
 
     // Generate the .xml content
     const testSuiteXml = `${xmlHeader}\n${testSuiteOpenTag}\n${classTags.join('\n')}\n${testSuiteCloseTag}`;
