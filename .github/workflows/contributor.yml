@@ -39,7 +39,8 @@ jobs:
     - name: Create issue
       uses: peter-evans/create-issue-from-file@v4
       with:
-        title: Monthly contributor report
+        title: "[CONTRIBUTOR] Report of ${{ env.END_DATE }}"
         token: ${{ secrets.GITHUB_TOKEN }}
         content-filepath: ./contributors.md
         assignees: nabondance
+        labels: contributor

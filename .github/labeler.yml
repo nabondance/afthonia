@@ -9,7 +9,7 @@ Dependencies:
     - 'package.json'
     - 'package-lock.json'
 
-Docs:
+documentation:
     - 'CONTRIBUTING.md'
     - '**/README.md'
     - 'docs/*'
