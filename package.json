@@ -27,7 +27,7 @@
     "eslint-plugin-typescript": "^0",
     "mocha": "^9",
     "nyc": "^15",
-    "oclif": "^3",
+    "oclif": "^4",
     "prettier": "^3",
     "rimraf": "latest",
     "sinon": "10.0.0",
