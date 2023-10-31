@@ -4,7 +4,7 @@
   "author": "Nathan Abondance @nabondance",
   "bugs": "https://github.com/nabondance/sfdx-afthonia/issues",
   "dependencies": {
-    "@oclif/core": "^1",
+    "@oclif/core": "^3",
     "@salesforce/command": "^5.3.3",
     "@salesforce/core": "^3.34.0",
     "@salesforce/plugin-generator": "^2.0.17",
