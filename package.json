@@ -15,7 +15,7 @@
     "@salesforce/ts-sinon": "^1",
     "@types/chai": "^4",
     "@types/mocha": "^8",
-    "@typescript-eslint/eslint-plugin": "^4",
+    "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^4",
     "chai": "^4",
     "eslint": "^7",
