@@ -16,7 +16,7 @@
     "@types/chai": "^4",
     "@types/mocha": "^10",
     "@typescript-eslint/eslint-plugin": "^6",
-    "@typescript-eslint/parser": "^4",
+    "@typescript-eslint/parser": "^6",
     "chai": "^4",
     "eslint": "^8",
     "eslint-config-prettier": "^9",
