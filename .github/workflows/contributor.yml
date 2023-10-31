@@ -43,3 +43,4 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         content-filepath: ./contributors.md
         assignees: nabondance
+        labels: contributor
