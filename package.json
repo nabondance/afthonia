@@ -11,7 +11,7 @@
     "@salesforce/sf-plugins-core": "^2.2.4"
   },
   "devDependencies": {
-    "@oclif/test": "^2",
+    "@oclif/test": "^3",
     "@salesforce/ts-sinon": "^1",
     "@types/chai": "^4",
     "@types/mocha": "^8",
