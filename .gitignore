@@ -4,7 +4,6 @@
 /.nyc_output
 /dist
 /lib
-/package-lock.json
 /tmp
 /tsconfig.tsbuildinfo
 node_modules
