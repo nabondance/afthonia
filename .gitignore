@@ -8,3 +8,4 @@
 /tmp
 /tsconfig.tsbuildinfo
 node_modules
+coverage/
