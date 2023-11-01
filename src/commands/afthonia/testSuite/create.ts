@@ -46,7 +46,7 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<AfthoniaTestSuite
         fs.mkdirSync(testSuiteFolderPath);
     }
 
-    // Create the test suite filde
+    // Create the test suite file
     const testSuiteXml = this.generateTestSuiteXml(testClasses);
     await fs.promises.writeFile(testSuitePath, testSuiteXml);
 
