@@ -34,19 +34,23 @@ jobs:
           cat output.txt >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Create comment
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
+
+      - name: Create comment about tests
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ```
             ## Tests output
+            ```
             ${{ env.test_output }}
             ```
+            ## Coverage artifact:
+            [Download the coverage report](${{ env.coverage-url }}) (not working yet)
+            https://github.com/nabondance/afthonia/suites/${{ github.run_id }}/artifacts/
+            https://github.com/nabondance/afthonia/actions/runs/${{ github.run_id }}
           edit-mode: replace
-
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-report
-          path: coverage/
