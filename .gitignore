@@ -1,10 +1,11 @@
 .notes
+.DS_Store
 *-debug.log
 *-error.log
 /.nyc_output
 /dist
 /lib
-/package-lock.json
 /tmp
 /tsconfig.tsbuildinfo
 node_modules
+coverage/

@@ -6,7 +6,11 @@ import * as path from "path";
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('sfdx-afthonia', 'afthonia.testSuite.create');
 
-export default class AfthoniaTestSuiteCreate extends SfCommand<void> {
+export type AfthoniaTestSuiteCreateResult = {
+  message: string;
+};
+
+export default class AfthoniaTestSuiteCreate extends SfCommand<AfthoniaTestSuiteCreateResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
@@ -19,7 +23,7 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<void> {
     }),
   };
 
-  public async run(): Promise<void> {
+  public async run(): Promise<AfthoniaTestSuiteCreateResult> {
     const { flags } = await this.parse(AfthoniaTestSuiteCreate);
 
     // Handle paths and prepare names
@@ -42,7 +46,7 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<void> {
         fs.mkdirSync(testSuiteFolderPath);
     }
 
-    // Create the test suite filde
+    // Create the test suite file
     const testSuiteXml = this.generateTestSuiteXml(testClasses);
     await fs.promises.writeFile(testSuitePath, testSuiteXml);
 
@@ -51,7 +55,7 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<void> {
   }
 
 
-  private async getTestClasses(folderPath: string): Promise<string[]> {
+  public async getTestClasses(folderPath: string): Promise<string[]> {
     const testClasses: string[] = [];
 
     for await (const file of this.getFiles(folderPath)) {
@@ -78,7 +82,7 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<void> {
     }
   }
 
-  private generateTestSuiteXml(classNames: string[]): string {
+  public generateTestSuiteXml(classNames: string[]): string {
     // Static xml for test suite
     const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
     const testSuiteOpenTag = '<ApexTestSuite xmlns="http://soap.sforce.com/2006/04/metadata">';

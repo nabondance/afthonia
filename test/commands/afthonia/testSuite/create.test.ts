@@ -1,61 +1,87 @@
-import { expect, test } from '@salesforce/command/lib/test';
+import { expect } from 'chai';
+import * as sinon from 'sinon';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as sinon from 'sinon';
 import AfthoniaTestSuiteCreate from '../../../../src/commands/afthonia/testSuite/create';
+import { Config } from '@oclif/core/lib/config';
 
-describe('afthonia:testSuite:create', () => {
-  const folderPath = 'test/fixtures/testClasses';
-  const testSuiteFolderPath = path.join(folderPath, 'testSuites');
-  const testSuiteName = `${path.basename(folderPath)}_TestSuite.testSuite-meta.xml`;
-  const testSuitePath = path.join(testSuiteFolderPath, testSuiteName);
+describe('AfthoniaTestSuiteCreate', () => {
+  let plugin: AfthoniaTestSuiteCreate;
+  let sandbox: sinon.SinonSandbox;
+  const tempDir = path.resolve(__dirname, 'temp');
 
-  let existsSyncStub: sinon.SinonStub<any[], any>;
-  let mkdirSyncStub: sinon.SinonStub<any[], any>;
-  let writeFileStub: sinon.SinonStub<any[], any>;
-
-  beforeEach(() => {
-    existsSyncStub = sinon.stub(fs, 'existsSync').returns(false);
-    mkdirSyncStub = sinon.stub(fs, 'mkdirSync');
-    writeFileStub = sinon.stub(fs.promises, 'writeFile');
+  beforeEach(async() => {
+    // Setup: create temporary directory structure with dummy test classes...
+    sandbox = sinon.createSandbox();
+    const config = new Config({ root: path.resolve(__dirname, '../../package.json') });
+    plugin = new AfthoniaTestSuiteCreate([`--folderPath=${tempDir}`], config);
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir, { recursive: true });
+    }
   });
 
   afterEach(() => {
-    sinon.restore();
+    sandbox.restore();
+    // Cleanup: delete temporary directory structure...
+    fs.rmdirSync(tempDir, { recursive: true });
   });
 
-  test
-    .do(() => {
-      existsSyncStub.withArgs(testSuiteFolderPath).returns(true);
-    })
-    .do(() => {
-      return AfthoniaTestSuiteCreate.run(['--folderPath', folderPath]);
-    })
-    .it('creates test suite file in existing folder', () => {
-      sinon.assert.calledWithExactly(mkdirSyncStub, testSuiteFolderPath);
-      sinon.assert.calledWithExactly(writeFileStub, testSuitePath, sinon.match.string);
-    });
+  it('should identify test classes correctly', async() => {
+    // Create some dummy test classes and non-test classes
+    fs.writeFileSync(path.join(tempDir, 'Test1.cls'), '@isTest\nclass Test1 {}');
+    fs.writeFileSync(path.join(tempDir, 'Test2.cls'), '@isTest\nclass Test2 {}');
+    fs.writeFileSync(path.join(tempDir, 'NotATest.cls'), 'class NotATest {}');
 
-  test
-    .do(() => {
-      return AfthoniaTestSuiteCreate.run(['--folderPath', folderPath]);
-    })
-    .it('creates test suite file in new folder', () => {
-      sinon.assert.calledWithExactly(mkdirSyncStub, testSuiteFolderPath);
-      sinon.assert.calledWithExactly(writeFileStub, testSuitePath, sinon.match.string);
-    });
+    const testClasses = await plugin.getTestClasses(tempDir);
+    expect(testClasses).to.deep.equal(['Test1', 'Test2']);
+  });
 
-  test
-    .do(() => {
-      existsSyncStub.withArgs(testSuiteFolderPath).returns(true);
-      writeFileStub.rejects(new Error('Permission denied'));
-    })
-    .command(['afthonia:testSuite:create', '--folderPath', folderPath])
-    .catch((error) => {
-      expect(error.message).to.equal('Permission denied');
-    })
-    .it('handles file write errors', () => {
-      sinon.assert.calledWithExactly(mkdirSyncStub, testSuiteFolderPath);
-      sinon.assert.calledWithExactly(writeFileStub, testSuitePath, sinon.match.string);
-    });
+  it('should generate test suite XML correctly', () => {
+    const classNames = ['Test1', 'Test2'];
+    const expectedXml =
+      '<?xml version="1.0" encoding="UTF-8"?>\n' +
+      '<ApexTestSuite xmlns="http://soap.sforce.com/2006/04/metadata">\n' +
+      '    <testClassName>Test1</testClassName>\n' +
+      '    <testClassName>Test2</testClassName>\n' +
+      '</ApexTestSuite>';
+    const xml = plugin.generateTestSuiteXml(classNames);
+    expect(xml).to.equal(expectedXml);
+  });
+
+  it('should create test suite folder and XML file correctly', async () => {
+    // Create some dummy test classes
+    fs.writeFileSync(path.join(tempDir, 'Test1.cls'), '@isTest\nclass Test1 {}');
+    fs.writeFileSync(path.join(tempDir, 'Test2.cls'), '@isTest\nclass Test2 {}');
+
+    // Stub the log method to prevent console output during testing
+    const logStub = sandbox.stub(plugin, 'log');
+
+    await plugin.run();
+
+    const testSuiteFolderPath = path.join(tempDir, 'testSuites');
+    const testSuitePath = path.join(testSuiteFolderPath, 'temp_TestSuite.testSuite-meta.xml');
+    expect(fs.existsSync(testSuiteFolderPath)).to.be.true;
+    expect(fs.existsSync(testSuitePath)).to.be.true;
+
+    // Restore the log method
+    logStub.restore();
+  });
+
+  it('should handle no test classes', async() => {
+    // Create some dummy non-test classes
+    fs.writeFileSync(path.join(tempDir, 'NotATest.cls'), 'class NotATest {}');
+
+    // Stub the log method to prevent console output during testing
+    const logStub = sandbox.stub(plugin, 'log');
+
+    await plugin.run();
+
+    const testSuiteFolderPath = path.join(tempDir, 'testSuites');
+    const testSuitePath = path.join(testSuiteFolderPath, 'temp_TestSuite.testSuite-meta.xml');
+    expect(fs.existsSync(testSuiteFolderPath)).to.be.false;
+    expect(fs.existsSync(testSuitePath)).to.be.false;
+
+    // Restore the log method
+    logStub.restore();
+  });
 });

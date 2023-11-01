@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@oclif/test": "^3",
+    "@salesforce/cli-plugins-testkit": "^4.4.12",
     "@salesforce/ts-sinon": "^1",
     "@types/chai": "^4",
     "@types/mocha": "^10",
@@ -35,7 +36,7 @@
     "typescript": "5"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "files": [
     "/lib",
@@ -70,12 +71,28 @@
     "posttest": "eslint src/**/*.ts test/**/*.ts",
     "prepack": "rimraf lib && tsc -b && oclif manifest && oclif readme",
     "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
+    "test:ci": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
+    "test:mocha": "mocha -r ts-node/register 'test/**/*.test.ts'",
     "version": "oclif readme && git add README.md",
     "precommit": "lint-staged"
   },
   "lint-staged": {
     "**/*.{ts,js,md,yaml,yml}": [
       "prettier --write"
+    ]
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.test.ts",
+      "**/*.nut.ts",
+      "coverage/*",
+      ".eslintrc.js",
+      "*/index.ts"
     ]
   }
 }
