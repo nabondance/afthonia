@@ -23,7 +23,7 @@ describe('AfthoniaTestSuiteCreate', () => {
   afterEach(() => {
     sandbox.restore();
     // Cleanup: delete temporary directory structure...
-    fs.rmdirSync(tempDir, { recursive: true });
+    fs.rmSync(tempDir, { recursive: true });
   });
 
   it('should identify test classes correctly', async() => {
@@ -31,6 +31,20 @@ describe('AfthoniaTestSuiteCreate', () => {
     fs.writeFileSync(path.join(tempDir, 'Test1.cls'), '@isTest\nclass Test1 {}');
     fs.writeFileSync(path.join(tempDir, 'Test2.cls'), '@isTest\nclass Test2 {}');
     fs.writeFileSync(path.join(tempDir, 'NotATest.cls'), 'class NotATest {}');
+
+    const testClasses = await plugin.getTestClasses(tempDir);
+    expect(testClasses).to.deep.equal(['Test1', 'Test2']);
+  });
+
+  it('should identify test classes correctly through directories', async() => {
+    // Create some dummy test classes and non-test classes inside a new directory
+    const tempSubDir = path.resolve(tempDir, 'temp2');
+    if (!fs.existsSync(tempSubDir)) {
+      fs.mkdirSync(tempSubDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(tempSubDir, 'Test1.cls'), '@isTest\nclass Test1 {}');
+    fs.writeFileSync(path.join(tempSubDir, 'Test2.cls'), '@isTest\nclass Test2 {}');
+    fs.writeFileSync(path.join(tempSubDir, 'NotATest.cls'), 'class NotATest {}');
 
     const testClasses = await plugin.getTestClasses(tempDir);
     expect(testClasses).to.deep.equal(['Test1', 'Test2']);
@@ -84,4 +98,27 @@ describe('AfthoniaTestSuiteCreate', () => {
     // Restore the log method
     logStub.restore();
   });
+
+  it('should handle directory existing', async() => {
+    // Create the testSuite folder
+    const testSuiteFolderPath = path.join(tempDir, 'testSuites');
+    fs.mkdirSync(testSuiteFolderPath);
+
+    // Create some dummy test classes
+    fs.writeFileSync(path.join(tempDir, 'Test1.cls'), '@isTest\nclass Test1 {}');
+    fs.writeFileSync(path.join(tempDir, 'Test2.cls'), '@isTest\nclass Test2 {}');
+
+    // Stub the log method to prevent console output during testing
+    const logStub = sandbox.stub(plugin, 'log');
+
+    await plugin.run();
+
+    const testSuitePath = path.join(testSuiteFolderPath, 'temp_TestSuite.testSuite-meta.xml');
+    expect(fs.existsSync(testSuiteFolderPath)).to.be.true;
+    expect(fs.existsSync(testSuitePath)).to.be.true;
+
+    // Restore the log method
+    logStub.restore();
+  });
+
 });
