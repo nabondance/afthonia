@@ -40,6 +40,13 @@ jobs:
           name: coverage-report
           path: coverage/
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: ./coverage/lcov.info
+
       - name: Create comment about tests
         uses: peter-evans/create-or-update-comment@v1
         with:
@@ -49,8 +56,4 @@ jobs:
             ```
             ${{ env.test_output }}
             ```
-            ## Coverage artifact:
-            [Download the coverage report](${{ env.coverage-url }}) (not working yet)
-            https://github.com/nabondance/afthonia/suites/${{ github.run_id }}/artifacts/
-            https://github.com/nabondance/afthonia/actions/runs/${{ github.run_id }}
           edit-mode: replace

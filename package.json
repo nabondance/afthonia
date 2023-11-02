@@ -83,8 +83,8 @@
   },
   "nyc": {
     "reporter": [
-      "text",
-      "html"
+      "lcov",
+      "text"
     ],
     "exclude": [
       "**/*.d.ts",
