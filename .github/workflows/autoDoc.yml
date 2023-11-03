@@ -14,9 +14,9 @@ jobs:
       # Build doc with sfdx-hardis
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-      - run: yarn
-      - run: yarn prepack
+          node-version: 18
+      - run: npm ci
+      - run: npm run prepack
       - run: npm i @salesforce/cli -g
       - run: echo y|sfdx plugins:install sfdx-hardis
       - run: sfdx hardis:doc:plugin:generate
