@@ -31,7 +31,7 @@
     "oclif": "^4",
     "prettier": "^3",
     "rimraf": "latest",
-    "sinon": "17.0.0",
+    "sinon": "17.0.1",
     "ts-node": "^10",
     "typescript": "5"
   },
