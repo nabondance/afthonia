@@ -2,7 +2,7 @@
   "name": "sfdx-afthonia",
   "version": "0.0.1",
   "author": "Nathan Abondance @nabondance",
-  "bugs": "https://github.com/nabondance/sfdx-afthonia/issues",
+  "bugs": "https://github.com/nabondance/afthonia/issues",
   "dependencies": {
     "@oclif/core": "^3",
     "@salesforce/command": "^5.3.3",
@@ -44,7 +44,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/nabondance/sfdx-afthonia",
+  "homepage": "https://github.com/nabondance/afthonia",
   "keywords": [
     "sfdx-plugin"
   ],
@@ -63,7 +63,7 @@
       }
     }
   },
-  "repository": "nabondance/sfdx-afthonia",
+  "repository": "nabondance/afthonia",
   "scripts": {
     "build": "tsc -p .",
     "lint": "eslint src/**/*.ts test/**/*.ts",
