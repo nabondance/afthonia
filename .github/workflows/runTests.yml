@@ -5,8 +5,20 @@ on:
     branches:
       - main
 
-permissions: write-all
-
+permissions:
+  actions: write
+  checks: write
+  contents: read
+  deployments: read
+  id-token: write
+  issues: read
+  discussions: write
+  packages: read
+  pages: write
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: write
 
 jobs:
   build:
