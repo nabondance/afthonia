@@ -6,7 +6,7 @@ updates:
     - package-ecosystem: 'npm'
       # Look for `package.json` and `lock` files in the `root` directory
       directory: '/'
-      # Max PRs open at teh same time
+      # Max PRs open at the same time
       open-pull-requests-limit: 10
       # Check the npm registry for updates every day (weekdays)
       schedule:
@@ -23,7 +23,7 @@ updates:
       schedule:
           interval: 'daily'
       commit-message:
-          # Prefix all commit messages with "npm"
+          # Prefix all commit messages with "sub"
           prefix: '[BOT] ⬆ sub'
           # include a list of updated dependencies
           include: 'scope'
