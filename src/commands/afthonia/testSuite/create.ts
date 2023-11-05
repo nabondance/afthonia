@@ -8,6 +8,7 @@ const messages = Messages.loadMessages('sfdx-afthonia', 'afthonia.testSuite.crea
 
 export type AfthoniaTestSuiteCreateResult = {
   message: string;
+  path: string;
 };
 
 export default class AfthoniaTestSuiteCreate extends SfCommand<AfthoniaTestSuiteCreateResult> {
@@ -32,13 +33,15 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<AfthoniaTestSuite
     const testSuiteName = `${folderName}_TestSuite.testSuite-meta.xml`;
     const testSuiteFolderPath = path.join(folderPath, 'testSuites')
     const testSuitePath = path.join(testSuiteFolderPath, testSuiteName)
+    let resultMessage;
 
     // Get the test classes in the folder and subfolders
     const testClasses = await this.getTestClasses(folderPath);
 
     if (testClasses.length === 0) {
-      this.log(`No test classes found in folder or subfolders: ${folderName}`);
-      return;
+      resultMessage = `No test classes found in folder or subfolders: ${folderName}`;
+      this.log(resultMessage);
+      return {message: resultMessage, path: null};
     }
 
     // Make the subfolder in which the test suite will be created
@@ -51,7 +54,9 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<AfthoniaTestSuite
     await fs.promises.writeFile(testSuitePath, testSuiteXml);
 
     // Prompt result
-    this.log(`Test suite written to ${testSuitePath}`);
+    resultMessage = `Test suite written to ${testSuitePath}`;
+    this.log(resultMessage);
+    return {message: resultMessage, path: testSuitePath};
   }
 
 
