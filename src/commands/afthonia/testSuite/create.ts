@@ -17,7 +17,7 @@ export default class AfthoniaTestSuiteCreate extends SfCommand<AfthoniaTestSuite
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
-    folderPath: Flags.string({
+    folderPath: Flags.directory({
       summary: messages.getMessage('flags.folderPath.summary'),
       char: 'p',
       required: true,
