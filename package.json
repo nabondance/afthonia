@@ -1,100 +1,100 @@
 {
-  "name": "sfdx-afthonia",
-  "version": "0.0.1",
-  "author": "Nathan Abondance @nabondance",
-  "bugs": "https://github.com/nabondance/afthonia/issues",
-  "dependencies": {
-    "@oclif/core": "^3",
-    "@salesforce/command": "^5.3.3",
-    "@salesforce/core": "^5.3.17",
-    "@salesforce/plugin-generator": "^2.0.17",
-    "@salesforce/sf-plugins-core": "^4.0.0"
-  },
-  "devDependencies": {
-    "@oclif/test": "^3",
-    "@salesforce/cli-plugins-testkit": "^5.0.0",
-    "@salesforce/ts-sinon": "^1",
-    "@types/chai": "^4",
-    "@types/mocha": "^10",
-    "@typescript-eslint/eslint-plugin": "^6",
-    "@typescript-eslint/parser": "^6",
-    "chai": "^4",
-    "eslint-config-prettier": "^9",
-    "eslint-plugin-header": "^3",
-    "eslint-plugin-import": "^2",
-    "eslint-plugin-jsdoc": "^46",
-    "eslint-plugin-prettier": "^5",
-    "eslint-plugin-typescript": "^0",
-    "eslint": "^8",
-    "mocha": "^10",
-    "nyc": "^15",
-    "oclif": "^4",
-    "prettier": "^3",
-    "rimraf": "latest",
-    "sinon": "17.0.1",
-    "ts-node": "^10",
-    "typescript": "5"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "files": [
-    "/lib",
-    "/messages",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
-  ],
-  "homepage": "https://github.com/nabondance/afthonia",
-  "keywords": [
-    "sfdx-plugin"
-  ],
-  "license": "BSD-3-Clause",
-  "oclif": {
-    "commands": "./lib/commands",
-    "bin": "sfdx",
-    "topics": {
-      "afthonia": {
-        "description": "afthonia commands",
-        "subtopics": {
-          "testSuite": {
-            "description": "Manage Salesforce test suites."
-          }
-        }
-      }
-    }
-  },
-  "repository": "nabondance/afthonia",
-  "scripts": {
-    "build": "tsc -p .",
-    "lint": "eslint src/**/*.ts test/**/*.ts",
-    "postpack": "rimraf oclif.manifest.json",
-    "posttest": "eslint src/**/*.ts test/**/*.ts",
-    "prepack": "rimraf lib && tsc -b && oclif manifest && oclif readme",
-    "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
-    "test:ci": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.ts\"",
-    "test:nuts": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.nut.ts\"",
-    "test:mocha": "mocha -r ts-node/register 'test/**/*.test.ts'",
-    "version": "oclif readme && git add README.md",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "**/*.{ts,js,md,yaml,yml}": [
-      "prettier --write"
-    ]
-  },
-  "nyc": {
-    "reporter": [
-      "lcov",
-      "text"
+    "name": "afthonia",
+    "version": "0.0.2",
+    "author": "Nathan Abondance @nabondance",
+    "bugs": "https://github.com/nabondance/afthonia/issues",
+    "dependencies": {
+        "@oclif/core": "^3",
+        "@salesforce/command": "^5.3.3",
+        "@salesforce/core": "^5.3.17",
+        "@salesforce/plugin-generator": "^2.0.17",
+        "@salesforce/sf-plugins-core": "^4.0.0"
+    },
+    "devDependencies": {
+        "@oclif/test": "^3",
+        "@salesforce/cli-plugins-testkit": "^5.0.0",
+        "@salesforce/ts-sinon": "^1",
+        "@types/chai": "^4",
+        "@types/mocha": "^10",
+        "@typescript-eslint/eslint-plugin": "^6",
+        "@typescript-eslint/parser": "^6",
+        "chai": "^4",
+        "eslint-config-prettier": "^9",
+        "eslint-plugin-header": "^3",
+        "eslint-plugin-import": "^2",
+        "eslint-plugin-jsdoc": "^46",
+        "eslint-plugin-prettier": "^5",
+        "eslint-plugin-typescript": "^0",
+        "eslint": "^8",
+        "mocha": "^10",
+        "nyc": "^15",
+        "oclif": "^4",
+        "prettier": "^3",
+        "rimraf": "latest",
+        "sinon": "17.0.1",
+        "ts-node": "^10",
+        "typescript": "5"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "files": [
+        "/lib",
+        "/messages",
+        "/npm-shrinkwrap.json",
+        "/oclif.manifest.json"
     ],
-    "exclude": [
-      "**/*.d.ts",
-      "**/test/**/*",
-      "**/*.test.ts",
-      "**/*.nut.ts",
-      "coverage/*",
-      ".eslintrc.js",
-      "*/index.ts"
-    ]
-  }
+    "homepage": "https://github.com/nabondance/afthonia",
+    "keywords": [
+        "sfdx-plugin"
+    ],
+    "license": "BSD-3-Clause",
+    "oclif": {
+        "commands": "./lib/commands",
+        "bin": "sfdx",
+        "topics": {
+            "afthonia": {
+                "description": "afthonia commands",
+                "subtopics": {
+                    "testSuite": {
+                        "description": "Manage Salesforce test suites."
+                    }
+                }
+            }
+        }
+    },
+    "repository": "nabondance/afthonia",
+    "scripts": {
+        "build": "tsc -p .",
+        "lint": "eslint src/**/*.ts test/**/*.ts",
+        "postpack": "rimraf oclif.manifest.json",
+        "posttest": "eslint src/**/*.ts test/**/*.ts",
+        "precommit": "lint-staged",
+        "prepack": "rimraf lib && tsc -b && oclif manifest && oclif readme",
+        "test:ci": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.ts\"",
+        "test:mocha": "mocha -r ts-node/register 'test/**/*.test.ts'",
+        "test:nuts": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.nut.ts\"",
+        "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
+        "version": "oclif readme && git add README.md"
+    },
+    "lint-staged": {
+        "**/*.{ts,js,md,yaml,yml}": [
+            "prettier --write"
+        ]
+    },
+    "nyc": {
+        "reporter": [
+            "lcov",
+            "text"
+        ],
+        "exclude": [
+            "**/*.d.ts",
+            "**/test/**/*",
+            "**/*.test.ts",
+            "**/*.nut.ts",
+            "coverage/*",
+            ".eslintrc.js",
+            "*/index.ts"
+        ]
+    }
 }

@@ -29,7 +29,7 @@ In short, when you submit code changes, your submissions are understood to be un
 
 ## Report bugs using Github's [issues](https://github.com/nabondance/afthonia/issues)
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/nabondance/afthonia/issues/new); it's that easy!
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/nabondance/afthonia/issues/new/choose); it's that easy!
 
 ## Writing Detailed Bug Reports
 
@@ -62,6 +62,19 @@ Each bug report should be opened as a new issue in the GitHub repository. Utiliz
 ## Use a Consistent Coding Style
 
 Be consistent with the existing coding style.
+
+## Use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+Common type: `feat, fix, docs, ci, style, refactor, perf, test, build, chore, revert`
+
+Common scope: `core, ui, config, release, util, auth`
+
 
 ## License
 
