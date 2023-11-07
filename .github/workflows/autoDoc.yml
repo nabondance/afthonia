@@ -1,4 +1,4 @@
-name: "DOC - Build and deploy with sfdx-hardis"
+name: doc - Build and deploy with sfdx-hardis
 on:
   push:
     branches:

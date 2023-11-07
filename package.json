@@ -1,6 +1,6 @@
 {
     "name": "afthonia",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "Nathan Abondance @nabondance",
     "bugs": "https://github.com/nabondance/afthonia/issues",
     "dependencies": {
@@ -46,7 +46,10 @@
     ],
     "homepage": "https://github.com/nabondance/afthonia",
     "keywords": [
-        "sfdx-plugin"
+        "sfdx-plugin",
+        "sfdx",
+        "salesforce",
+        "salesforcedx"
     ],
     "license": "BSD-3-Clause",
     "oclif": {
@@ -54,7 +57,7 @@
         "bin": "sfdx",
         "topics": {
             "afthonia": {
-                "description": "afthonia commands",
+                "description": "afthonia plugin for sfdx",
                 "subtopics": {
                     "testSuite": {
                         "description": "Manage Salesforce test suites."

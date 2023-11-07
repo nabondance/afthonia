@@ -1,4 +1,4 @@
-name: Monthly contributor report
+name: issue - Monthly contributor report
 on:
   workflow_dispatch:
   schedule:
