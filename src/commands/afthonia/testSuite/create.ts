@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.loadMessages('sfdx-afthonia', 'afthonia.testSuite.create');
+const messages = Messages.loadMessages('afthonia', 'afthonia.testSuite.create');
 
 export type AfthoniaTestSuiteCreateResult = {
   message: string;

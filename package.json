@@ -1,5 +1,5 @@
 {
-    "name": "sfdx-afthonia",
+    "name": "afthonia",
     "version": "0.0.2",
     "author": "Nathan Abondance @nabondance",
     "bugs": "https://github.com/nabondance/afthonia/issues",
@@ -69,13 +69,13 @@
         "lint": "eslint src/**/*.ts test/**/*.ts",
         "postpack": "rimraf oclif.manifest.json",
         "posttest": "eslint src/**/*.ts test/**/*.ts",
+        "precommit": "lint-staged",
         "prepack": "rimraf lib && tsc -b && oclif manifest && oclif readme",
-        "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
         "test:ci": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.ts\"",
-        "test:nuts": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.nut.ts\"",
         "test:mocha": "mocha -r ts-node/register 'test/**/*.test.ts'",
-        "version": "oclif readme && git add README.md",
-        "precommit": "lint-staged"
+        "test:nuts": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.nut.ts\"",
+        "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
+        "version": "oclif readme && git add README.md"
     },
     "lint-staged": {
         "**/*.{ts,js,md,yaml,yml}": [
