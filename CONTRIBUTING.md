@@ -63,6 +63,19 @@ Each bug report should be opened as a new issue in the GitHub repository. Utiliz
 
 Be consistent with the existing coding style.
 
+## Use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+Common type: `feat, fix, docs, ci, style, refactor, perf, test, build, chore, revert`
+
+Common scope: `core, ui, config, release, util, auth`
+
+
 ## License
 
 By contributing, you agree that your contributions will be licensed under its [BSD 3-Clause License](LICENSE).
