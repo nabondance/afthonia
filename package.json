@@ -46,7 +46,10 @@
     ],
     "homepage": "https://github.com/nabondance/afthonia",
     "keywords": [
-        "sfdx-plugin"
+        "sfdx-plugin",
+        "sfdx",
+        "salesforce",
+        "salesforcedx"
     ],
     "license": "BSD-3-Clause",
     "oclif": {
