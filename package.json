@@ -57,7 +57,7 @@
         "bin": "sfdx",
         "topics": {
             "afthonia": {
-                "description": "afthonia commands",
+                "description": "afthonia plugin for sfdx",
                 "subtopics": {
                     "testSuite": {
                         "description": "Manage Salesforce test suites."
