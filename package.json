@@ -8,7 +8,7 @@
         "@salesforce/command": "^5.3.3",
         "@salesforce/core": "^5.3.17",
         "@salesforce/plugin-generator": "^2.0.17",
-        "@salesforce/sf-plugins-core": "^4.0.0"
+        "@salesforce/sf-plugins-core": "^4.1.0"
     },
     "devDependencies": {
         "@oclif/test": "^3",
