@@ -12,7 +12,7 @@
     },
     "devDependencies": {
         "@oclif/test": "^3",
-        "@salesforce/cli-plugins-testkit": "^5.0.0",
+        "@salesforce/cli-plugins-testkit": "^5.0.4",
         "@salesforce/ts-sinon": "^1",
         "@types/chai": "^4",
         "@types/mocha": "^10",
