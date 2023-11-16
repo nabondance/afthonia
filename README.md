@@ -1,4 +1,3 @@
-[![Pre-release](https://github.com/nabondance/afthonia/actions/workflows/pre-release.yml/badge.svg)](https://github.com/nabondance/afthonia/actions/workflows/pre-release.yml)
 [![Release](https://github.com/nabondance/afthonia/actions/workflows/release.yml/badge.svg)](https://github.com/nabondance/afthonia/actions/workflows/release.yml)
 
 
