@@ -17,7 +17,7 @@ changelog:
         - source
     - title: ⬆ Dependencies
       labels:
-        - "dependencies"
+        - dependencies
     - title: Other Changes
       labels:
         - "*"
