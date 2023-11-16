@@ -17,6 +17,11 @@ updates:
           prefix: '[BOT] ⬆ npm'
           # include a list of updated dependencies
           include: 'scope'
+      ignore:
+        # For all dependencies
+        - dependency-name: "*"
+          # Ignore all patch updates
+          update-types: ["version-update:semver-patch"]
 
     - package-ecosystem: 'gitsubmodule'
       directory: '/'
