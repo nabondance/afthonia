@@ -15,7 +15,7 @@ changelog:
         - Semver-Minor
         - enhancement
         - source
-    - title: ⬆ Dependencies
+    - title: ⬆️ Dependencies
       labels:
         - dependencies
     - title: Other Changes
