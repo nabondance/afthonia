@@ -1,0 +1,23 @@
+# File to generate the release note automatically
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - nobody
+  categories:
+    - title: 🛠 Breaking Changes
+      labels:
+        - Semver-Major
+        - breaking-change
+    - title: 🎉 New Features
+      labels:
+        - Semver-Minor
+        - enhancement
+        - source
+    - title: ⬆ Dependencies
+      labels:
+        - "Dependencies"
+    - title: Other Changes
+      labels:
+        - "*"

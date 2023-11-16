@@ -1,11 +1,11 @@
-CI:
+ci:
     - '.github/workflows/*'
     - '.circleci/*'
 
-Config:
+config:
     - 'config/*'
 
-Dependencies:
+dependencies:
     - 'package.json'
     - 'package-lock.json'
 
@@ -14,5 +14,8 @@ documentation:
     - '**/README.md'
     - 'docs/*'
 
-Tooling:
+source:
+    - 'src/**/*'
+
+tooling:
     - 'tools/**/*'

@@ -39,11 +39,6 @@ jobs:
         - name: Production Build
           run: npm run build
 
-        - name: Display npm info
-          run: npm whoami
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
         - name: Publish to NPM
           run: npm ci && npm publish
           env:
